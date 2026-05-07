@@ -49,6 +49,7 @@ export default function Footer() {
               <Link
                 href="https://www.instagram.com/cedarpoint.lb?igsh=MWhmY3BpMXd4a2Z3dA=="
                 target="_blank"
+                aria-label="Instagram"
                 className="text-slate-400 hover:text-primary transition-colors"
               >
                 <InstagramIcon className="size-5" />
@@ -56,12 +57,14 @@ export default function Footer() {
               <Link
                 href="https://www.linkedin.com/company/cedar-point-lb/"
                 target="_blank"
+                aria-label="LinkedIn"
                 className="text-slate-400 hover:text-primary transition-colors"
               >
                 <LinkedInIcon className="size-5" />
               </Link>
               <Link
-                href=":contact@cedarpoint.tech"
+                href="mailto:@cedarpoint.tech"
+                aria-label="Email Cedar Point Software"
                 className="text-slate-400 hover:text-primary transition-colors"
               >
                 <GmailIcon className="size-5" />

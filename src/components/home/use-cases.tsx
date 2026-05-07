@@ -1,5 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Image from "next/image";
-import { CheckCircle2 } from "lucide-react";
+import { Icon } from "../icon";
 import { useCases } from "./config";
 
 export default function UseCases() {
@@ -15,7 +18,13 @@ export default function UseCases() {
               }`}
             >
               {/* Content */}
-              <div className="flex-1 w-full max-w-xl">
+              <motion.div
+                initial={{ opacity: 0, x: useCase.reverse ? 50 : -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+                className="flex-1 w-full max-w-xl"
+              >
                 <span className="text-xs font-bold text-primary uppercase tracking-widest mb-4 block">
                   {useCase.badge}
                 </span>
@@ -27,29 +36,47 @@ export default function UseCases() {
                 </p>
                 <ul className="space-y-4">
                   {useCase.features.map((feature, i) => (
-                    <li
+                    <motion.li
                       key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.5 + i * 0.1 }}
                       className="flex items-center gap-3 text-slate-700 font-medium"
                     >
-                      <CheckCircle2 className="size-5 text-primary shrink-0" />
+                      <Icon
+                        name="CircleCheck"
+                        className="size-5 text-primary shrink-0"
+                      />
                       {feature}
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
 
               {/* Image */}
-              <div className="flex-1 w-full">
-                <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl shadow-slate-200 border border-slate-200">
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  scale: 0.9,
+                  rotate: useCase.reverse ? -2 : 2,
+                }}
+                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="flex-1 w-full"
+              >
+                <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl shadow-slate-200 border border-slate-200 group">
                   <Image
                     src={useCase.image}
                     alt={useCase.title}
                     fill
-                    sizes="120"
-                    className="object-cover"
+                    loading="eager"
+                    sizes={"120"}
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-              </div>
+              </motion.div>
             </div>
           ))}
         </div>

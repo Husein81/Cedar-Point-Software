@@ -7,7 +7,6 @@ export const slides = [
       "We build powerful POS systems, inventory tools, digital menus, and custom software to help your business grow.",
     primaryButton: "Explore Products",
     secondaryButton: "Request Demo",
-    // We'll render a custom mock UI for each slide
     mockType: "dashboard",
   },
   {

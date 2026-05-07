@@ -1,17 +1,17 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ActivityIcon, MapPin, Sparkles } from "lucide-react";
+import { Activity } from "react";
+import { motion } from "framer-motion";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Icon } from "../icon";
+import { slides } from "./config";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/pagination";
-import { Activity } from "react";
-import { slides } from "./config";
-import { Icon } from "../icon";
 
 export default function Hero() {
   return (
@@ -40,23 +40,43 @@ export default function Hero() {
               <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
                 {/* Left Content */}
                 <div className="flex-1 max-w-2xl">
-                  <div className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-800 mb-6 shadow-sm">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-800 mb-6 shadow-sm"
+                  >
                     <Icon
                       name={slide.badgeIcon}
                       className="size-3.5 mr-1 text-primary"
                     />
                     {slide.badgeText}
-                  </div>
+                  </motion.div>
 
-                  <h1 className="text-4xl lg:text-5xl xl:text-6xl font-extrabold text-slate-900 leading-[1.1] tracking-tight mb-6">
+                  <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="text-4xl lg:text-5xl xl:text-6xl font-extrabold text-slate-900 leading-[1.1] tracking-tight mb-6"
+                  >
                     {slide.title}
-                  </h1>
+                  </motion.h1>
 
-                  <p className="text-lg lg:text-xl text-slate-600 mb-8 leading-relaxed max-w-xl">
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="text-lg lg:text-xl text-slate-600 mb-8 leading-relaxed max-w-xl"
+                  >
                     {slide.description}
-                  </p>
+                  </motion.p>
 
-                  <div className="flex flex-wrap items-center gap-4">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="flex flex-wrap items-center gap-4"
+                  >
                     <Button
                       size="lg"
                       className="px-8 font-semibold h-12 text-base rounded-lg"
@@ -70,11 +90,16 @@ export default function Hero() {
                     >
                       {slide.secondaryButton}
                     </Button>
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Right Content - Mock UI */}
-                <div className="flex-1 w-full flex justify-center lg:justify-end">
+                <motion.div
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="flex-1 w-full flex justify-center lg:justify-end"
+                >
                   <div className="relative w-full max-w-[600px] aspect-4/3 lg:aspect-auto lg:h-[450px] bg-linear-to-br from-slate-200 to-slate-100 rounded-2xl flex items-center justify-center p-6 lg:p-10">
                     {/* Floating elements for visual flair */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-white/40 blur-3xl rounded-full pointer-events-none" />
@@ -177,7 +202,7 @@ export default function Hero() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </SwiperSlide>
           ))}
