@@ -1,3 +1,4 @@
+import Link from "next/dist/client/link";
 import Image from "next/image";
 
 export default function CustomDetails() {
@@ -23,9 +24,12 @@ export default function CustomDetails() {
                             We design and develop tailored software to match your workflows.
                         </p>
 
-                        <button className="mt-7 rounded-2xl bg-[#2563EB] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-700">
+                        <Link
+                            href="/contact"
+                            className="mt-7 inline-block rounded-2xl bg-[#2563EB] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-700"
+                        >
                             Contact Us →
-                        </button>
+                        </Link>
 
                     </div>
 
@@ -236,9 +240,12 @@ export default function CustomDetails() {
                         Custom software solutions designed to simplify operations and help your business grow faster.
                     </p>
 
-                    <button className="mt-8 rounded-[14px] bg-white px-7 py-4 text-sm font-semibold text-[#2563EB] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl">
+                    <Link
+                        href="/contact"
+                        className="mt-8 inline-block rounded-[14px] bg-white px-7 py-4 text-sm font-semibold text-[#2563EB] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    >
                         Start Your Project
-                    </button>
+                    </Link>
 
                 </div>
             </section>

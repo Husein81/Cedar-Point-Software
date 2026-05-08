@@ -54,7 +54,7 @@ export default function ProductSection({
                                     alt="check"
                                     width={18}
                                     height={18}
-                                    className="mt-0.5 flex-shrink-0"
+                                    className="mt-0.5 shrink-0"
                                 />
 
                                 <span className="text-[14.5px] leading-6 text-[#344054]">
@@ -65,10 +65,11 @@ export default function ProductSection({
                     </ul>
 
                     {/* Button */}
-                    <Link href={`/products/${product.id}`}>
-                        <button className="mt-6 rounded-[12px] bg-[#2563EB] px-5 py-2.5 text-[14.5px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1D4ED8] hover:shadow-lg">
-                            Learn More
-                        </button>
+                    <Link
+                        href={`/products/${product.id}`}
+                        className="mt-6 inline-block rounded-[12px] bg-[#2563EB] px-5 py-2.5 text-[14.5px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1D4ED8] hover:shadow-lg"
+                    >
+                        Learn More
                     </Link>
                 </div>
 

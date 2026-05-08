@@ -1,3 +1,4 @@
+import Link from "next/dist/client/link";
 import Image from "next/image";
 
 export default function InventoryDetails() {
@@ -22,10 +23,12 @@ export default function InventoryDetails() {
                         <p className="mt-5 text-[16px] leading-7 text-gray-600 sm:text-lg lg:max-w-[520px]">
                             Track, manage, and optimize your stock in real time with ease.
                         </p>
-
-                        <button className="mt-7 rounded-2xl bg-[#2563EB] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-700">
+                        <Link
+                            href="/contact"
+                            className="mt-7 inline-block rounded-2xl bg-[#2563EB] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-700"
+                        >
                             Request Demo →
-                        </button>
+                        </Link>
 
                     </div>
 
@@ -142,7 +145,7 @@ export default function InventoryDetails() {
                                 {
                                     icon: "/icons/pos/store.png",
                                     title: "Retail Stores",
-                                    desc: "Manage stock efficiently acrosslocations.",
+                                    desc: "Manage stock efficiently across locations.",
                                 },
                                 {
                                     icon: "/icons/inventory/warehouse.png",
@@ -190,10 +193,14 @@ export default function InventoryDetails() {
                     <p className="mx-auto mt-4 max-w-[620px] text-sm leading-6 text-[#DBEAFE] sm:text-base sm:leading-7 md:text-lg md:leading-8">
                         Control your inventory with a modern platform designed for speed, simplicity, and growth.
                     </p>
-
-                    <button className="mt-6 rounded-[14px] bg-white px-6 py-3 text-sm font-semibold text-[#2563EB] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:mt-8">
+                    <Link
+                        href="/contact"
+                        className="mt-6 inline-block rounded-[14px] bg-white px-6 py-3 text-sm font-semibold text-[#2563EB] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:mt-8"
+                    >
                         Contact Us
-                    </button>
+                    </Link>
+
+
 
                 </div>
             </section>
