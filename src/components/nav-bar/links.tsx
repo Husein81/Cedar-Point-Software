@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { Icon } from "../icon";
 
 type NavLink = {
   label: string;
@@ -56,18 +56,22 @@ export default function Links() {
         aria-label="Toggle menu"
         variant={"ghost"}
       >
-        {isOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+        {isOpen ? (
+          <Icon name="X" className="size-6" />
+        ) : (
+          <Icon name="Menu" className="size-6" />
+        )}
       </Button>
 
       {/* Mobile Menu Overlay & Dropdown */}
       {isOpen && (
         <>
           {/* Backdrop */}
-          <div 
-            className="fixed inset-0 top-16 bg-slate-900/20 backdrop-blur-sm z-40 md:hidden animate-in fade-in duration-300" 
+          <div
+            className="fixed inset-0 top-16 bg-slate-900/20 backdrop-blur-sm z-40 md:hidden animate-in fade-in duration-300"
             onClick={() => setIsOpen(false)}
           />
-          
+
           {/* Dropdown Menu */}
           <div className="absolute top-full left-0 right-0 z-50 bg-white border-b border-slate-200 shadow-xl md:hidden overflow-hidden animate-in slide-in-from-top-4 duration-300 ease-out">
             <div className="flex flex-col gap-1 p-4">
@@ -81,17 +85,24 @@ export default function Links() {
                     className={`flex items-center px-4 py-3 text-lg font-medium rounded-lg transition-colors animate-in slide-in-from-left-4 fade-in fill-mode-both`}
                     style={{ animationDelay: `${index * 50}ms` }}
                   >
-                    <span className={isActive ? "text-primary" : "text-slate-600"}>
+                    <span
+                      className={isActive ? "text-primary" : "text-slate-600"}
+                    >
                       {link.label}
                     </span>
                   </Link>
                 );
               })}
-              <div 
+              <div
                 className="mt-2 p-4 animate-in slide-in-from-bottom-4 fade-in fill-mode-both"
                 style={{ animationDelay: `${navLinks.length * 50}ms` }}
               >
-                <Button asChild size="lg" className="w-full font-bold shadow-md shadow-primary/20" onClick={() => setIsOpen(false)}>
+                <Button
+                  asChild
+                  size="lg"
+                  className="w-full font-bold shadow-md shadow-primary/20"
+                  onClick={() => setIsOpen(false)}
+                >
                   <Link href="/contact">Contact Us</Link>
                 </Button>
               </div>
