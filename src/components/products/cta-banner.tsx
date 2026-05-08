@@ -1,3 +1,5 @@
+import Link from "next/dist/client/link";
+
 export default function CtaBanner() {
     return (
         <section className="px-6 py-20 sm:py-24">
@@ -15,9 +17,12 @@ export default function CtaBanner() {
                 </p>
 
                 {/* Button */}
-                <button className="mt-6 sm:mt-8 rounded-[14px] bg-white px-6 py-3 text-[14px] sm:text-[15px] font-semibold text-[#2563EB] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] opacity-0 translate-y-3 animate-[fadeInUp_0.7s_ease-out_0.3s_forwards]">
+                <Link
+                    href="/contact"
+                    className="mt-6 sm:mt-8 inline-block rounded-[14px] bg-white px-6 py-3 text-[14px] sm:text-[15px] font-semibold text-[#2563EB] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] opacity-0 translate-y-3 animate-[fadeInUp_0.7s_ease-out_0.3s_forwards]"
+                >
                     Contact Us
-                </button>
+                </Link>
             </div>
 
         </section>

@@ -1,3 +1,5 @@
+import Link from "next/dist/client/link";
+
 export default function ProductHero() {
     return (
         <section className="px-6 py-20 sm:py-24 text-center">
@@ -16,21 +18,18 @@ export default function ProductHero() {
 
                 {/* CTA Buttons */}
                 <div className="mt-8 flex flex-row items-center justify-center gap-3 sm:mt-10 sm:gap-4">
-                    {/* Primary CTA */}
-                    <a
+                    <Link
                         href="#products"
                         className="inline-flex h-[48px] items-center justify-center rounded-[14px] bg-[#2563EB] px-5 text-[14px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1D4ED8] hover:shadow-lg sm:px-6 sm:text-[15px]"
                     >
                         Explore Solutions
-                    </a>
-
-                    {/* Secondary CTA */}
-                    <a
+                    </Link>
+                    <Link
                         href="#contact"
                         className="inline-flex h-[48px] items-center justify-center rounded-[14px] border border-[#D1D5DB] bg-white px-5 text-[14px] font-semibold text-[#111827] transition-all duration-300 hover:border-[#2563EB] hover:text-[#2563EB] hover:shadow-md sm:px-6 sm:text-[15px]"
                     >
                         Contact Sales
-                    </a>
+                    </Link>
                 </div>
             </div>
         </section>

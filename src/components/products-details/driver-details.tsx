@@ -1,3 +1,4 @@
+import Link from "next/dist/client/link";
 import Image from "next/image";
 
 export default function DriverDetails() {
@@ -22,10 +23,12 @@ export default function DriverDetails() {
                         <p className="mt-5 text-[16px] leading-7 text-gray-600 sm:text-lg lg:max-w-[520px]">
                             Track your drivers and deliveries with live updates and accuracy.
                         </p>
-
-                        <button className="mt-7 rounded-2xl bg-[#2563EB] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-700">
+                        <Link
+                            href="/contact"
+                            className="mt-7 inline-block rounded-2xl bg-[#2563EB] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-700"
+                        >
                             Request Demo →
-                        </button>
+                        </Link>
 
                     </div>
 
@@ -69,7 +72,7 @@ export default function DriverDetails() {
                             {
                                 icon: "/icons/driver/status.png",
                                 title: "Delivery Status Updates",
-                                desc: "Automatically log every step from dispatch to final drop- off.",
+                                desc: "Automatically log every step from dispatch to final drop-off.",
                             },
                             {
                                 icon: "/icons/driver/route.png",
@@ -180,7 +183,6 @@ export default function DriverDetails() {
             </section>
 
             {/* CTA */}
-            {/* CTA */}
             <section className="px-6 py-16 sm:py-24">
                 <div className="mx-auto max-w-5xl rounded-[32px] bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] px-6 py-14 text-center text-white shadow-[0_20px_60px_rgba(37,99,235,0.25)] sm:px-8 sm:py-20">
 
@@ -193,9 +195,12 @@ export default function DriverDetails() {
                         and instant delivery updates that improve efficiency and customer satisfaction.
                     </p>
 
-                    <button className="mt-6 rounded-[14px] bg-white px-6 py-3 text-sm font-semibold text-[#2563EB] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:mt-8">
+                    <Link
+                        href="/contact"
+                        className="mt-6 inline-block rounded-[14px] bg-white px-6 py-3 text-sm font-semibold text-[#2563EB] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:mt-8"
+                    >
                         Schedule a Demo
-                    </button>
+                    </Link>
 
                 </div>
             </section>

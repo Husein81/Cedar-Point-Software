@@ -1,3 +1,4 @@
+import Link from "next/dist/client/link";
 import Image from "next/image";
 
 export default function MenuDetails() {
@@ -23,9 +24,12 @@ export default function MenuDetails() {
                             Deliver a seamless ordering experience with QR-based menus.
                         </p>
 
-                        <button className="mt-7 rounded-2xl bg-[#2563EB] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-700">
+                        <Link
+                            href="/contact"
+                            className="mt-7 inline-block rounded-2xl bg-[#2563EB] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-700"
+                        >
                             Request Demo →
-                        </button>
+                        </Link>
 
                     </div>
 
@@ -196,9 +200,12 @@ export default function MenuDetails() {
                         Join thousands of restaurants delivering a better dining experience.
                     </p>
 
-                    <button className="mt-6 rounded-[14px] bg-white px-6 py-3 text-sm font-semibold text-[#2563EB] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:mt-8">
+                    <Link
+                        href="/contact"
+                        className="mt-6 inline-block rounded-[14px] bg-white px-6 py-3 text-sm font-semibold text-[#2563EB] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:mt-8"
+                    >
                         Contact Us
-                    </button>
+                    </Link>
 
                 </div>
             </section>
