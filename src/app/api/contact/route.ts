@@ -12,8 +12,7 @@ function getResendClient(): Resend {
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// In-memory rate limiter: 3 submissions per IP per 10 minutes.
-// For multi-instance deployments replace with @upstash/ratelimit + Redis.
+
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT_MAX = 3;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
