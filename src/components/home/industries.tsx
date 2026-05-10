@@ -6,7 +6,7 @@ import { industries } from "./config";
 
 export default function Industries() {
   return (
-    <section className="py-24 bg-slate-50 overflow-hidden">
+    <section className="py-24 bg-surface overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -50,10 +50,10 @@ export default function Industries() {
                 hidden: { opacity: 0, scale: 0.9 },
                 show: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
               }}
-              whileHover={{ 
-                y: -10, 
+              whileHover={{
+                y: -10,
                 backgroundColor: "rgba(255, 255, 255, 1)",
-                transition: { duration: 0.3 } 
+                transition: { duration: 0.3 },
               }}
               className="bg-white p-10 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center group transition-all duration-300"
             >
