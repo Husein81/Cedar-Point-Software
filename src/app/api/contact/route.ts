@@ -1,7 +1,14 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+let _resend: Resend | null = null;
+
+function getResendClient(): Resend {
+  if (!_resend) {
+    _resend = new Resend(process.env.RESEND_API_KEY);
+  }
+  return _resend;
+}
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -117,6 +124,8 @@ export async function POST(request: NextRequest) {
       </p>
       <p style="margin-bottom:0;">Best regards,<br/>Cedar Point Software Team</p>
     `);
+
+    const resend = getResendClient();
 
     await resend.emails.send({
       from: "contact@cedarpoint.software",
