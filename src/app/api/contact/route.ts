@@ -5,13 +5,14 @@ let _resend: Resend | null = null;
 
 function getResendClient(): Resend {
   if (!_resend) {
-    _resend = new Resend(process.env.RESEND_API_KEY);
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) throw new Error("RESEND_API_KEY environment variable is not set");
+    _resend = new Resend(apiKey);
   }
   return _resend;
 }
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT_MAX = 3;
@@ -57,6 +58,33 @@ function buildEmailShell(bodyContent: string): string {
 </html>`;
 }
 
+type ContactBody = {
+  fullName: string;
+  email: string;
+  businessType: string;
+  message: string;
+  otherInterest: string;
+  interests: unknown[];
+};
+
+function parseContactBody(raw: unknown): ContactBody | null {
+  if (typeof raw !== "object" || raw === null) return null;
+  const b = raw as Record<string, unknown>;
+  const fullName = typeof b.fullName === "string" ? b.fullName.trim() : "";
+  const email = typeof b.email === "string" ? b.email.trim() : "";
+  const businessType = typeof b.businessType === "string" ? b.businessType.trim() : "";
+  const message = typeof b.message === "string" ? b.message.trim() : "";
+  if (!fullName || !email || !businessType || !message) return null;
+  return {
+    fullName,
+    email,
+    businessType,
+    message,
+    otherInterest: typeof b.otherInterest === "string" ? b.otherInterest : "",
+    interests: Array.isArray(b.interests) ? b.interests : [],
+  };
+}
+
 export async function POST(request: NextRequest) {
   const ip =
     request.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
@@ -69,21 +97,16 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const body: unknown = await request.json();
-    const record = body as Record<string, unknown>;
-    const fullName = String(record.fullName ?? "");
-    const email = String(record.email ?? "");
-    const businessType = String(record.businessType ?? "");
-    const message = String(record.message ?? "");
-    const otherInterest = String(record.otherInterest ?? "");
-    const interests = record.interests;
+    const body = parseContactBody(await request.json());
 
-    if (!fullName || !email || !businessType || !message) {
+    if (!body) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
       );
     }
+
+    const { fullName, email, businessType, message, otherInterest, interests } = body;
 
     if (!EMAIL_REGEX.test(email)) {
       return NextResponse.json(
@@ -97,9 +120,8 @@ export async function POST(request: NextRequest) {
     const safeBusinessType = escapeHtml(businessType);
     const safeMessage = escapeHtml(message).replace(/\n/g, "<br />");
     const safeOtherInterest = escapeHtml(otherInterest);
-    const safeInterests = Array.isArray(interests)
-      ? interests.map((i: unknown) => escapeHtml(String(i))).join(", ")
-      : "None";
+    const safeInterests =
+      interests.map((i: unknown) => escapeHtml(String(i))).join(", ") || "None";
     const interestsLine = safeOtherInterest
       ? `${safeInterests} — Other: ${safeOtherInterest}`
       : safeInterests;
@@ -134,12 +156,16 @@ export async function POST(request: NextRequest) {
       html: notificationHtml,
     });
 
-    await resend.emails.send({
-      from: "contact@cedarpoint.software",
-      to: email,
-      subject: "We received your message - Cedar Point Software",
-      html: confirmationHtml,
-    });
+    try {
+      await resend.emails.send({
+        from: "contact@cedarpoint.software",
+        to: email,
+        subject: "We received your message - Cedar Point Software",
+        html: confirmationHtml,
+      });
+    } catch (confirmationError) {
+      console.error("Confirmation email failed:", confirmationError);
+    }
 
     return NextResponse.json(
       { success: true, message: "Email sent successfully" },
