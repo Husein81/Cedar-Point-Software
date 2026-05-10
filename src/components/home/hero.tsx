@@ -15,7 +15,7 @@ import "swiper/css/pagination";
 
 export default function Hero() {
   return (
-    <div className="w-full bg-[#f8f9fa] pt-20 lg:pt-24 pb-16 lg:pb-20 overflow-hidden">
+    <div className="w-full bg-surface pt-20 lg:pt-24 pb-16 lg:pb-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Swiper
           modules={[Autoplay, Pagination, EffectFade]}
