@@ -25,8 +25,7 @@ export default function ProductSection({
             className={`${bg} border-y border-white/40 py-16 sm:py-20 transition-colors duration-500`}
         >
             <div
-                className={`mx-auto flex max-w-6xl flex-col gap-12 px-6 lg:flex-row ${reverse ? "lg:flex-row-reverse" : ""
-                    }`}
+                className={`mx-auto flex max-w-6xl flex-col gap-12 px-6 lg:flex-row ${reverse ? "lg:flex-row-reverse" : ""}`}
             >
                 {/* TEXT */}
                 <div className="flex-1">
