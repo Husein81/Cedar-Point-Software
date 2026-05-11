@@ -25,7 +25,7 @@ export default function ProductSection({
     const bg = index % 2 === 0 ? "bg-slate-50" : "bg-white";
 
     return (
-        <section className={`py-24 overflow-hidden ${bg}`}>
+        <section id="products" className={`py-24 overflow-hidden ${bg}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 <div

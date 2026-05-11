@@ -85,7 +85,7 @@ export default function ProductHero() {
                             text-sm font-semibold
                         "
                     >
-                        <Link href="#contact">
+                        <Link href="/contact">
                             Contact Sales
                         </Link>
                     </Button>

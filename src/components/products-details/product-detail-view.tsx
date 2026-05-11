@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Icon } from "@/components/icon";
 import type { Variants } from "framer-motion";
@@ -91,10 +92,12 @@ export default function ProductDetailView({ product }: Props) {
                     >
                         <div className="relative w-full max-w-[420px] sm:max-w-[520px] lg:max-w-[620px]">
 
-                            <img
+                            <Image
                                 src={details.heroImage}
                                 alt={product.title}
-                                className="h-auto w-full rounded-[24px] sm:rounded-[32px] object-contain shadow-2xl shadow-foreground/10 dark:shadow-black/40"
+                                width={1200}
+                                height={900}
+                                className="h-auto w-full rounded-[24px] sm:rounded-[32px] object-contain "
                             />
 
                         </div>
@@ -170,9 +173,11 @@ export default function ProductDetailView({ product }: Props) {
                         className="mx-auto max-w-[1150px]"
                     >
 
-                        <img
+                        <Image
                             src={details.bigImage}
                             alt={product.title}
+                            width={1400}
+                            height={900}
                             className="w-full rounded-[24px] sm:rounded-[36px] shadow-2xl shadow-foreground/10 dark:shadow-black/40"
                         />
 
