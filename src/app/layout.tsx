@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/nav-bar";
 import Footer from "@/components/footer/index";
+import CTA from "@/components/cta";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <NavBar />
         <main className="flex-1 pt-16">{children}</main>
+        <CTA />
         <Footer />
       </body>
     </html>
