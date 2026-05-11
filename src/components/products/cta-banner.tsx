@@ -1,30 +1,78 @@
-import Link from "next/dist/client/link";
+"use client";
+
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function CtaBanner() {
     return (
         <section className="px-6 py-20 sm:py-24">
-            <div className="mx-auto max-w-5xl rounded-[32px] bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] px-6 sm:px-8 py-16 sm:py-20 text-center text-white shadow-[0_20px_60px_rgba(37,99,235,0.25)]">
-
+            <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="
+                    mx-auto max-w-5xl rounded-3xl
+                    bg-gradient-to-br from-primary to-primary/80
+                    px-6 py-16 text-center text-white
+                    shadow-2xl
+                    sm:px-8 sm:py-20
+                "
+            >
                 {/* Heading */}
-                <h2 className="mx-auto max-w-[720px] text-[30px] sm:text-[36px] font-bold leading-[38px] sm:leading-[44px] tracking-[-0.72px] opacity-0 translate-y-3 animate-[fadeInUp_0.7s_ease-out_forwards]">
+                <motion.h2
+                    initial={{ opacity: 0, y: 4 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="
+                        mx-auto max-w-3xl
+                        text-3xl font-bold leading-tight tracking-tight
+                        sm:text-4xl
+                    "
+                >
                     Need a custom solution for your business?
-                </h2>
+                </motion.h2>
 
                 {/* Subheading */}
-                <p className="mx-auto mt-4 sm:mt-5 max-w-[620px] text-[16px] sm:text-[18px] leading-[24px] sm:leading-[30px] text-[#DBEAFE] opacity-0 translate-y-3 animate-[fadeInUp_0.7s_ease-out_0.15s_forwards]">
+                <motion.p
+                    initial={{ opacity: 0, y: 4 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="
+                        mx-auto mt-4 max-w-2xl
+                        text-base leading-relaxed text-white/80
+                        sm:mt-5 sm:text-lg
+                    "
+                >
                     We build tailored software systems designed specifically for your
                     workflows, operations, and long-term growth.
-                </p>
+                </motion.p>
 
                 {/* Button */}
-                <Link
-                    href="/contact"
-                    className="mt-6 sm:mt-8 inline-block rounded-[14px] bg-white px-6 py-3 text-[14px] sm:text-[15px] font-semibold text-[#2563EB] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] opacity-0 translate-y-3 animate-[fadeInUp_0.7s_ease-out_0.3s_forwards]"
+                <motion.div
+                    initial={{ opacity: 0, y: 4 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
                 >
-                    Contact Us
-                </Link>
-            </div>
-
+                    <Link
+                        href="/contact"
+                        className="
+                            mt-6 inline-flex items-center justify-center
+                            rounded-xl bg-white px-6 py-3
+                            text-sm font-semibold text-primary
+                            transition-all duration-300
+                            hover:-translate-y-1 hover:shadow-lg
+                            active:scale-95
+                            sm:mt-8 sm:text-base
+                        "
+                    >
+                        Contact Us
+                    </Link>
+                </motion.div>
+            </motion.div>
         </section>
     );
 }

@@ -1,36 +1,97 @@
-import Link from "next/dist/client/link";
+"use client";
+
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 export default function ProductHero() {
     return (
-        <section className="px-6 py-20 sm:py-24 text-center">
-            <div className="mx-auto max-w-[600px]">
+        <section className="relative overflow-hidden bg-background px-6 py-20 text-center sm:py-24">
+
+            <div className="mx-auto max-w-3xl">
+
+                {/* Badge */}
+                <motion.div
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="
+                        inline-flex items-center
+                        rounded-full border border-primary/20
+                        bg-primary/10 px-4 py-2
+                        text-sm font-medium text-primary
+                    "
+                >
+                    Modern Business Solutions
+                </motion.div>
+
                 {/* Heading */}
-                <h1 className="text-[34px] font-bold leading-[44px] tracking-[-1px] text-[#111827] sm:text-[40px] sm:leading-[61.6px] sm:tracking-[-1.12px]">
-                    Powerful Software Solutions <br />
+                <motion.h1
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.05 }}
+                    className="
+                        mt-6 text-4xl font-bold tracking-tight text-foreground
+                        leading-tight sm:text-5xl
+                    "
+                >
+                    Powerful Software Solutions
+                    <br />
                     for Modern Businesses
-                </h1>
+                </motion.h1>
 
                 {/* Description */}
-                <p className="mt-5 text-[15px] leading-7 text-[#667085] sm:mt-6 sm:text-[16px]">
+                <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="
+                        mx-auto mt-6 max-w-2xl
+                        text-base leading-7 text-muted-foreground
+                        sm:text-lg
+                    "
+                >
                     From POS systems to custom-built platforms, we provide everything
                     your business needs to operate, scale, and grow.
-                </p>
+                </motion.p>
 
                 {/* CTA Buttons */}
-                <div className="mt-8 flex flex-row items-center justify-center gap-3 sm:mt-10 sm:gap-4">
-                    <Link
-                        href="#products"
-                        className="inline-flex h-[48px] items-center justify-center rounded-[14px] bg-[#2563EB] px-5 text-[14px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1D4ED8] hover:shadow-lg sm:px-6 sm:text-[15px]"
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.15 }}
+                    className="mt-10 flex flex-wrap items-center justify-center gap-4"
+                >
+
+                    <Button
+                        asChild
+                        className="
+                            h-12 px-8
+                            rounded-xl
+                            text-sm font-semibold
+                        "
                     >
-                        Explore Solutions
-                    </Link>
-                    <Link
-                        href="#contact"
-                        className="inline-flex h-[48px] items-center justify-center rounded-[14px] border border-[#D1D5DB] bg-white px-5 text-[14px] font-semibold text-[#111827] transition-all duration-300 hover:border-[#2563EB] hover:text-[#2563EB] hover:shadow-md sm:px-6 sm:text-[15px]"
+                        <Link href="#products">
+                            Explore Solutions
+                        </Link>
+                    </Button>
+
+                    <Button
+                        asChild
+                        variant="outline"
+                        className="
+                            h-12 px-8
+                            rounded-xl
+                            text-sm font-semibold
+                        "
                     >
-                        Contact Sales
-                    </Link>
-                </div>
+                        <Link href="#contact">
+                            Contact Sales
+                        </Link>
+                    </Button>
+
+                </motion.div>
+
             </div>
         </section>
     );

@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 
-import POSDetailsPage from "@/components/products-details/pos-details";
-import InventoryDetails from "@/components/products-details/inventory-details";
-import MenuDetails from "@/components/products-details/menu-details";
-import DriverDetails from "@/components/products-details/driver-details";
+import ProductDetailView from "@/components/products-details/product-detail-view";
+
 import CustomDetails from "@/components/products-details/custom-details";
+
+import { products } from "@/lib/products";
 
 interface Props {
     params: Promise<{
@@ -17,25 +17,19 @@ export default async function ProductDetailsPage({
 }: Props) {
     const { id } = await params;
 
-    switch (id) {
-        case "pos-system":
-            return <POSDetailsPage />;
+    const product = products.find(
+        (p) => p.id === id
+    );
 
-        case "inventory-management-system":
-            return <InventoryDetails />;
-
-        case "digital-menu":
-            return <MenuDetails />;
-            
-
-        case "driver-tracking-system":
-            return <DriverDetails />;
-
-
-        case "custom-software-solutions":
-            return <CustomDetails />;
-
-        default:
-            notFound();
+    if (!product) {
+        notFound();
     }
+
+    if (id === "custom-software-solutions") {
+        return <CustomDetails />;
+    }
+
+    return (
+        <ProductDetailView product={product} />
+    );
 }
