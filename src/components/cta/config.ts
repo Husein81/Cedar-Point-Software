@@ -13,4 +13,11 @@ export const ctaConfigs: Record<string, CTAContent> = {
     buttonText: "Get Started",
     buttonHref: "/contact",
   },
+  "/products": {
+    title: "Need a custom solution for your business?",
+    description:
+      "We build tailored software systems designed specifically for your workflows, operations, and long-term growth.",
+    buttonText: "Contact Us",
+    buttonHref: "/contact",
+  },
 };

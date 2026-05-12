@@ -1,9 +1,7 @@
 import ProductHero from "@/components/products/product-hero";
 import ProductSection from "@/components/products/product-section";
-import CtaBanner from "@/components/products/cta-banner";
-
-import {products} from "@/lib/products";
 import SolutionsSection from "@/components/products/solutions-section";
+import { products } from "@/lib/products";
 
 export default function ProductsPage() {
   return (
@@ -21,8 +19,6 @@ export default function ProductsPage() {
         ))}
       </div>
       <SolutionsSection />
-
-      <CtaBanner />
     </main>
   );
 }
