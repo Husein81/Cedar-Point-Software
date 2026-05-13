@@ -1,9 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { Select } from "radix-ui";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { contactConfig } from "./config";
 import {
   Mail,
@@ -11,7 +19,6 @@ import {
   CheckCircle,
   AlertCircle,
   Check,
-  ChevronDown,
 } from "lucide-react";
 
 type FormState = "idle" | "loading" | "success" | "error";
@@ -25,12 +32,7 @@ type ContactFormData = {
   message: string;
 };
 
-const inputClass = cn(
-  "w-full px-4 py-2.5 border border-input rounded-lg bg-background text-foreground",
-  "placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
-);
-
-const labelClass = "block text-sm font-medium mb-2";
+const labelClass = "mb-2";
 
 const EMPTY_FORM: ContactFormData = {
   fullName: "",
@@ -82,19 +84,23 @@ export default function ContactForm() {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) throw new Error("Failed to send message");
+      if (!response.ok) {
+        const data: { error?: string } = await response.json().catch(() => ({}));
+        throw new Error(data.error ?? "Failed to send message");
+      }
 
       setFeedbackMessage(
         "Thank you! We've received your message and will get back to you shortly."
       );
       setFormState("success");
       setFormData(EMPTY_FORM);
-    } catch {
+    } catch (err) {
       setFeedbackMessage(
-        "Something went wrong. Please try again or contact us directly."
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again or contact us directly."
       );
       setFormState("error");
-      // Auto-clear error so the user can retry without manual dismissal
       setTimeout(() => {
         setFormState("idle");
         setFeedbackMessage("");
@@ -105,10 +111,10 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label htmlFor="fullName" className={labelClass}>
+        <Label htmlFor="fullName" className={labelClass}>
           Full Name
-        </label>
-        <input
+        </Label>
+        <Input
           type="text"
           id="fullName"
           name="fullName"
@@ -116,15 +122,15 @@ export default function ContactForm() {
           onChange={handleInputChange}
           placeholder="Enter your full name"
           required
-          className={inputClass}
+          className="h-auto px-4 py-2.5"
         />
       </div>
 
       <div>
-        <label htmlFor="email" className={labelClass}>
+        <Label htmlFor="email" className={labelClass}>
           Email Address
-        </label>
-        <input
+        </Label>
+        <Input
           type="email"
           id="email"
           name="email"
@@ -132,70 +138,30 @@ export default function ContactForm() {
           onChange={handleInputChange}
           placeholder="example@domain.com"
           required
-          className={inputClass}
+          className="h-auto px-4 py-2.5"
         />
       </div>
 
       <div>
-        <label htmlFor="businessType" className={labelClass}>
+        <Label htmlFor="businessType" className={labelClass}>
           Business Type
-        </label>
-        <Select.Root
+        </Label>
+        <Select
           value={formData.businessType}
           onValueChange={handleBusinessTypeChange}
           required
         >
-          <Select.Trigger
-            id="businessType"
-            className={cn(
-              inputClass,
-              "flex items-center justify-between gap-2 cursor-pointer",
-              "data-[state=open]:border-primary data-[state=open]:ring-2 data-[state=open]:ring-primary/50",
-              "data-placeholder:text-muted-foreground/60"
-            )}
-          >
-            <Select.Value placeholder="Select your business type..." />
-            <Select.Icon asChild>
-              <ChevronDown
-                className="size-4 text-muted-foreground shrink-0 transition-transform duration-200 data-[state=open]:rotate-180"
-              />
-            </Select.Icon>
-          </Select.Trigger>
-
-          <Select.Portal>
-            <Select.Content
-              position="popper"
-              sideOffset={4}
-              className={cn(
-                "z-50 w-(--radix-select-trigger-width)",
-                "bg-popover border border-border rounded-lg shadow-lg",
-                "overflow-hidden",
-                "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
-                "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
-              )}
-            >
-              <Select.Viewport className="p-1">
-                {contactConfig.businessTypes.map((type) => (
-                  <Select.Item
-                    key={type}
-                    value={type}
-                    className={cn(
-                      "relative flex items-center justify-between px-4 py-2.5 rounded-md",
-                      "text-sm text-foreground cursor-pointer outline-none",
-                      "data-highlighted:bg-primary/5 data-highlighted:text-primary",
-                      "data-[state=checked]:font-medium data-[state=checked]:text-primary"
-                    )}
-                  >
-                    <Select.ItemText>{type}</Select.ItemText>
-                    <Select.ItemIndicator>
-                      <Check className="size-4 text-primary" />
-                    </Select.ItemIndicator>
-                  </Select.Item>
-                ))}
-              </Select.Viewport>
-            </Select.Content>
-          </Select.Portal>
-        </Select.Root>
+          <SelectTrigger id="businessType" className="w-full h-auto px-4 py-2.5">
+            <SelectValue placeholder="Select your business type..." />
+          </SelectTrigger>
+          <SelectContent>
+            {contactConfig.businessTypes.map((type) => (
+              <SelectItem key={type} value={type}>
+                {type}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       <fieldset>
@@ -244,22 +210,22 @@ export default function ContactForm() {
         </div>
 
         {formData.interests.includes("Other") && (
-          <input
+          <Input
             type="text"
             name="otherInterest"
             value={formData.otherInterest}
             onChange={handleInputChange}
             placeholder="Tell us what you're looking for..."
             autoFocus
-            className={cn(inputClass, "mt-2")}
+            className="h-auto px-4 py-2.5 mt-2"
           />
         )}
       </fieldset>
 
       <div>
-        <label htmlFor="message" className={labelClass}>
+        <Label htmlFor="message" className={labelClass}>
           Message
-        </label>
+        </Label>
         <textarea
           id="message"
           name="message"
@@ -268,7 +234,11 @@ export default function ContactForm() {
           placeholder="Tell us about your requirements..."
           rows={5}
           required
-          className={cn(inputClass, "resize-none")}
+          className={cn(
+            "w-full px-4 py-2.5 border border-input rounded-lg bg-background text-foreground",
+            "placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary",
+            "resize-none"
+          )}
         />
       </div>
 
