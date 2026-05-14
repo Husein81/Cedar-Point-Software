@@ -20,4 +20,11 @@ export const ctaConfigs: Record<string, CTAContent> = {
     buttonText: "Contact Us",
     buttonHref: "/contact",
   },
+  "/about": {
+    title: "Let’s build the right solution for your business.",
+    description:
+      "Tell us about your business needs and we’ll help you find the right digital solution.",
+    buttonText: "Contact Us",
+    buttonHref: "/contact",
+  },
 };
