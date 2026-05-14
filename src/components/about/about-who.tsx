@@ -64,13 +64,15 @@ export default function AboutWho() {
                 <div className="flex flex-col gap-5 sm:grid sm:grid-cols-3 sm:gap-6">
                   {aboutStats.map((stat) => (
                     <div key={stat.id}>
-                      <dd className="text-2xl font-bold text-foreground sm:text-3xl">
-                        {stat.value}
-                      </dd>
+                      <div key={stat.id}>
+                        <dt className="text-sm leading-snug text-muted-foreground">
+                          {stat.label}
+                        </dt>
 
-                      <dt className="mt-1 text-sm leading-snug text-muted-foreground">
-                        {stat.label}
-                      </dt>
+                        <dd className="mt-1 text-2xl font-bold text-foreground sm:text-3xl">
+                          {stat.value}
+                        </dd>
+                      </div>
                     </div>
                   ))}
                 </div>
