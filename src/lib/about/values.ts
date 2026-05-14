@@ -1,4 +1,13 @@
-export const values = [
+export type IconName = "Award" | "BadgeCheck" | "MessageSquare" | "Globe";
+
+export interface AboutValue {
+  id: string;
+  icon: IconName;
+  title: string;
+  description: string;
+}
+
+export const values: AboutValue[] = [
   {
     id: "quality",
     icon: "Award",
@@ -27,22 +36,4 @@ export const values = [
     description:
       "We understand the local market while maintaining international quality.",
   },
-] as const;
-
-export const aboutStats = [
-  {
-    id: "hours",
-    value: "1,000+",
-    label: "Hours Delivered",
-  },
-  {
-    id: "retention",
-    value: "95%",
-    label: "Client Retention",
-  },
-  {
-    id: "projects",
-    value: "20+",
-    label: "Projects Completed",
-  },
-] as const;
+];

@@ -6,7 +6,6 @@ export default function AboutMission() {
   return (
     <section className="bg-background py-20 text-center md:py-28 lg:py-32">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        
         {/* Eyebrow */}
         <motion.p
           initial={{ opacity: 0, y: 14 }}

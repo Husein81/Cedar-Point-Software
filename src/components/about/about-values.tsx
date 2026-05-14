@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { Icon } from "@/components/icon";
 import { values } from "@/lib/about";
 
+const VIEWPORT = { once: true, amount: 0.2 };
+
 export default function AboutValues() {
   return (
     <section
@@ -12,11 +14,12 @@ export default function AboutValues() {
       aria-labelledby="about-values-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={VIEWPORT}
           className="mb-12 text-center md:mb-16"
         >
           <h2
@@ -27,6 +30,7 @@ export default function AboutValues() {
           </h2>
         </motion.div>
 
+        {/* GRID */}
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {values.map(({ id, icon, title, description }, index) => (
             <motion.li
@@ -37,22 +41,20 @@ export default function AboutValues() {
                 duration: 0.5,
                 delay: index * 0.12,
               }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={VIEWPORT}
             >
               <article className="flex h-full flex-col gap-5 rounded-xl border border-border bg-card p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                {/* ICON */}
                 <motion.div
                   whileHover={{ scale: 1.08 }}
                   transition={{ type: "spring", stiffness: 260, damping: 18 }}
-                  className="flex size-14 shrink-0 items-center justify-center rounded-md bg-blue-50 text-primary dark:bg-primary/10"
-                  aria-hidden
+                  className="flex size-14 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary"
+                  aria-hidden="true"
                 >
-                  <Icon
-                    name={icon}
-                    className="size-7"
-                    strokeWidth={1.75}
-                  />
+                  <Icon name={icon} className="size-7" strokeWidth={1.75} />
                 </motion.div>
 
+                {/* CONTENT */}
                 <div>
                   <h3 className="text-xl font-semibold text-foreground">
                     {title}
