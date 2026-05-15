@@ -27,4 +27,11 @@ export const ctaConfigs: Record<string, CTAContent> = {
     buttonText: "Contact Us",
     buttonHref: "/contact",
   },
+  "/pricing": {
+    title: "Ready to get started?",
+    description:
+      "Join thousands of retail businesses and restaurants that trust Cedar Point Software to power their daily operations.",
+    buttonText: "Contact Us",
+    buttonHref: "/contact",
+  },
 };

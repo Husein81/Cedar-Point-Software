@@ -64,6 +64,11 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  --color-primary-soft: oklch(from var(--primary) l c h / 0.05);
+  --color-primary-subtle: oklch(from var(--primary) l c h / 0.15);
+  --color-primary-muted: oklch(from var(--primary) l c h / 0.2);
+  --color-primary-medium: oklch(from var(--primary) l c h / 0.3);
 }
 
 :root {
