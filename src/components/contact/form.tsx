@@ -1,10 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,8 +10,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
+import { AlertCircle, CheckCircle, Loader2, Mail } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { z } from "zod";
+import { Checkbox } from "../ui/checkbox";
+import { Textarea } from "../ui/textarea";
 import { contactConfig } from "./config";
-import { Mail, Loader2, CheckCircle, AlertCircle, Check } from "lucide-react";
 
 const OTHER_OPTION = "Other";
 
@@ -36,7 +38,7 @@ const schema = z
     {
       message: "Please describe what you're looking for",
       path: ["otherInterest"],
-    }
+    },
   );
 
 type ContactFormData = z.infer<typeof schema>;
@@ -62,7 +64,7 @@ export default function ContactForm() {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
-    resolver: zodResolver(schema),
+    resolver: standardSchemaResolver(schema),
     defaultValues: {
       fullName: "",
       email: "",
@@ -83,7 +85,9 @@ export default function ContactForm() {
         body: JSON.stringify(data),
       });
       if (!response.ok) {
-        const json: { error?: string } = await response.json().catch(() => ({}));
+        const json: { error?: string } = await response
+          .json()
+          .catch(() => ({}));
         throw new Error(json.error ?? "Failed to send message");
       }
       reset();
@@ -100,18 +104,26 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
-      <FormField label="Full Name" htmlFor="fullName" error={errors.fullName?.message}>
+      <FormField
+        label="Full Name"
+        htmlFor="fullName"
+        error={errors.fullName?.message}
+      >
         <Input
           id="fullName"
           type="text"
-          placeholder="Enter your full name"
+          placeholder="John Doe"
           aria-invalid={!!errors.fullName}
           className="h-auto px-4 py-2.5"
           {...register("fullName")}
         />
       </FormField>
 
-      <FormField label="Email Address" htmlFor="email" error={errors.email?.message}>
+      <FormField
+        label="Email Address"
+        htmlFor="email"
+        error={errors.email?.message}
+      >
         <Input
           id="email"
           type="email"
@@ -122,7 +134,11 @@ export default function ContactForm() {
         />
       </FormField>
 
-      <FormField label="Business Type" htmlFor="businessType" error={errors.businessType?.message}>
+      <FormField
+        label="Business Type"
+        htmlFor="businessType"
+        error={errors.businessType?.message}
+      >
         <Controller
           name="businessType"
           control={control}
@@ -162,44 +178,30 @@ export default function ContactForm() {
               {PRODUCTS.map((product) => {
                 const isSelected = field.value.includes(product);
                 return (
-                  <label
+                  <Label
                     key={product}
                     className={cn(
                       "flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-all duration-150",
                       isSelected
                         ? "border-primary bg-primary/5"
-                        : "border-border hover:border-primary/40 hover:bg-muted/50"
+                        : "border-border hover:border-primary/40 hover:bg-muted/50",
                     )}
                   >
-                    <input
-                      type="checkbox"
+                    <Checkbox
                       checked={isSelected}
-                      onChange={() =>
-                        field.onChange(
-                          isSelected
-                            ? field.value.filter((p) => p !== product)
-                            : [...field.value, product]
-                        )
+                      onCheckedChange={(checked) =>
+                        checked
+                          ? field.onChange([...field.value, product])
+                          : field.onChange(
+                              field.value.filter((p) => p !== product),
+                            )
                       }
-                      className="sr-only"
                     />
-                    <div
-                      className={cn(
-                        "size-4 rounded shrink-0 border-2 flex items-center justify-center transition-all duration-150",
-                        isSelected ? "border-primary bg-primary" : "border-input"
-                      )}
-                    >
-                      {isSelected && (
-                        <Check
-                          className="size-2.5 text-primary-foreground"
-                          strokeWidth={3}
-                        />
-                      )}
-                    </div>
+
                     <span className="text-sm font-medium text-foreground">
                       {product}
                     </span>
-                  </label>
+                  </Label>
                 );
               })}
             </div>
@@ -220,18 +222,15 @@ export default function ContactForm() {
         )}
       />
 
-      <FormField label="Message" htmlFor="message" error={errors.message?.message}>
-        <textarea
+      <FormField
+        label="Message"
+        htmlFor="message"
+        error={errors.message?.message}
+      >
+        <Textarea
           id="message"
           placeholder="Tell us about your requirements..."
           rows={5}
-          aria-invalid={!!errors.message}
-          className={cn(
-            "w-full px-4 py-2.5 border border-input rounded-lg bg-background text-foreground text-sm",
-            "placeholder:text-muted-foreground/60 outline-none transition-colors resize-none",
-            "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
-            "aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20"
-          )}
           {...register("message")}
         />
       </FormField>
