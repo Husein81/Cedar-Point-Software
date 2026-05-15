@@ -42,8 +42,7 @@ export const products: Product[] = [
   {
     id: "pos-system",
     title: "POS System",
-    description:
-      "Works seamlessly for both retail and restaurants.",
+    description: "Works seamlessly for both retail and restaurants.",
     image: "/products/pos.png",
 
     features: [
@@ -55,14 +54,12 @@ export const products: Product[] = [
     details: {
       heroBadge: "POS System",
 
-      heroTitle:
-        "Simple and Powerful POS for Retail & Restaurants",
+      heroTitle: "Simple and Powerful POS for Retail & Restaurants",
 
       heroDescription:
         "Streamline your operations, manage inventory, and serve customers faster with our all-in-one point of sale platform.",
 
-      heroImage:
-        "/product-details/pos/pos-hero.png",
+      heroImage: "/product-details/pos/pos-hero.png",
 
       features: [
         {
@@ -87,8 +84,7 @@ export const products: Product[] = [
         },
       ],
 
-      bigImage:
-        "/product-details/pos/pos-order-panel.png",
+      bigImage: "/product-details/pos/pos-order-panel.png",
 
       audience: [
         {
@@ -105,8 +101,7 @@ export const products: Product[] = [
 
       ctaTitle: "Ready to get started?",
 
-      ctaDescription:
-        "Transform your business with a modern POS platform.",
+      ctaDescription: "Transform your business with a modern POS platform.",
 
       ctaButton: "Contact Us",
     },
@@ -115,8 +110,7 @@ export const products: Product[] = [
   {
     id: "inventory-management-system",
     title: "Inventory Management System",
-    description:
-      "Take control of your stock across multiple locations.",
+    description: "Take control of your stock across multiple locations.",
     image: "/products/inventory.png",
 
     features: [
@@ -128,14 +122,12 @@ export const products: Product[] = [
     details: {
       heroBadge: "Inventory Management System",
 
-      heroTitle:
-        "Smart Inventory Management for Modern Businesses",
+      heroTitle: "Smart Inventory Management for Modern Businesses",
 
       heroDescription:
         "Track, manage, and optimize your stock in real time with ease.",
 
-      heroImage:
-        "/product-details/inventory/hero.png",
+      heroImage: "/product-details/inventory/hero.png",
 
       features: [
         {
@@ -157,11 +149,10 @@ export const products: Product[] = [
           icon: "Store",
           title: "Multi-Location Support",
           desc: "Manage multiple stores from a single centralized dashboard.",
-        }
+        },
       ],
 
-      bigImage:
-        "/product-details/inventory/inventory-overview.png",
+      bigImage: "/product-details/inventory/inventory-overview.png",
 
       audience: [
         {
@@ -178,8 +169,7 @@ export const products: Product[] = [
 
       ctaTitle: "Optimize Your Inventory",
 
-      ctaDescription:
-        "Reduce waste and improve operational efficiency.",
+      ctaDescription: "Reduce waste and improve operational efficiency.",
 
       ctaButton: "Contact Us",
     },
@@ -201,14 +191,12 @@ export const products: Product[] = [
     details: {
       heroBadge: "Digital Menu",
 
-      heroTitle:
-        "Modern Digital Menus for Restaurants & Cafés",
+      heroTitle: "Modern Digital Menus for Restaurants & Cafés",
 
       heroDescription:
         "Deliver a seamless ordering experience with QR-based menus.",
 
-      heroImage:
-        "/product-details/menu/menu.png",
+      heroImage: "/product-details/menu/menu.png",
 
       features: [
         {
@@ -233,8 +221,7 @@ export const products: Product[] = [
         },
       ],
 
-      bigImage:
-        "/product-details/menu/menu-image.png",
+      bigImage: "/product-details/menu/menu-image.png",
 
       audience: [
         {
@@ -249,8 +236,7 @@ export const products: Product[] = [
         },
       ],
 
-      ctaTitle:
-        "Upgrade your customer experience today",
+      ctaTitle: "Upgrade your customer experience today",
 
       ctaDescription:
         "Join thousands of restaurants delivering a better dining experience.",
@@ -262,8 +248,7 @@ export const products: Product[] = [
   {
     id: "driver-tracking-system",
     title: "Driver Tracking System",
-    description:
-      "Monitor fleets and optimize deliveries.",
+    description: "Monitor fleets and optimize deliveries.",
     image: "/products/driver.png",
 
     features: [
@@ -275,14 +260,12 @@ export const products: Product[] = [
     details: {
       heroBadge: "Driver Tracking System",
 
-      heroTitle:
-        "Real-Time Driver Tracking for Smarter Deliveries",
+      heroTitle: "Real-Time Driver Tracking for Smarter Deliveries",
 
       heroDescription:
         "Track your drivers and deliveries with live updates and accuracy.",
 
-      heroImage:
-        "/product-details/driver/driver-hero.png",
+      heroImage: "/product-details/driver/driver-hero.png",
 
       features: [
         {
@@ -307,8 +290,7 @@ export const products: Product[] = [
         },
       ],
 
-      bigImage:
-        "/product-details/driver/driver-overview.png",
+      bigImage: "/product-details/driver/driver-overview.png",
 
       audience: [
         {
@@ -335,8 +317,7 @@ export const products: Product[] = [
   {
     id: "custom-software-solutions",
     title: "Custom Software Solutions",
-    description:
-      "Custom platforms tailored to your workflows.",
+    description: "Custom platforms tailored to your workflows.",
     image: "/products/custom.png",
 
     features: [

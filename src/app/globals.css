@@ -10,8 +10,8 @@
   --font-sans: var(--font-inter);
 
   --font-mono:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
 
   --font-heading: var(--font-inter);
 

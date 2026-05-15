@@ -8,7 +8,6 @@ export default function SolutionsSection() {
   return (
     <section className="bg-slate-50 px-6 py-24 overflow-hidden">
       <div className="mx-auto max-w-7xl">
-
         {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -22,14 +21,13 @@ export default function SolutionsSection() {
           </h2>
 
           <p className="mt-4 text-[18px] leading-[30px] text-slate-600">
-            Our integrated modules combine to form the ultimate operating
-            system for your industry.
+            Our integrated modules combine to form the ultimate operating system
+            for your industry.
           </p>
         </motion.div>
 
         {/* CARDS */}
         <div className="mt-16 flex flex-wrap justify-center gap-6">
-
           {solutions.map((solution, index) => (
             <motion.div
               key={solution.id}
@@ -44,14 +42,9 @@ export default function SolutionsSection() {
               whileHover={{ y: -6 }}
               className="w-[372px] rounded-[24px] border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:border-primary hover:shadow-xl"
             >
-
               {/* ICON */}
               <div className="flex h-[56px] w-[56px] items-center justify-center rounded-[16px] bg-primary/10">
-                <Icon
-                  name={solution.icon}
-                  size={26}
-                  className="text-primary"
-                />
+                <Icon name={solution.icon} size={26} className="text-primary" />
               </div>
 
               {/* TITLE */}
@@ -79,10 +72,8 @@ export default function SolutionsSection() {
                   </motion.span>
                 ))}
               </div>
-
             </motion.div>
           ))}
-
         </div>
       </div>
     </section>
